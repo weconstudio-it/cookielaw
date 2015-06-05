@@ -5,7 +5,7 @@ var WECookieLaw = {
 			config = config || {};
 			
 			WECookieLaw.blocking = config.blocking || false;
-			WECookieLaw.path = config.cssPath || "http://www.weconstudio.it/wecookielaw/";
+			WECookieLaw.path = config.path || "";
 			WECookieLaw.cancelLink = config.cancelLink ||  'http://www.garanteprivacy.it/';
 			WECookieLaw.acceptButton = config.acceptButton || "Accetto";
 			WECookieLaw.cancelButton = config.cancelButton || "Esci dal sito"
@@ -29,9 +29,8 @@ var WECookieLaw = {
 			}
 			
 			// carico in memoria blockUI se non lo è già
-			if(typeof jQuery.blockUI == 'undefined'){
-				if(WECookieLaw.blocking)
-					jQuery.getScript(WECookieLaw.path + 'jquery.blockUI.js', run);
+			if(typeof jQuery.blockUI == 'undefined' && WECookieLaw.blocking ){
+				jQuery.getScript(WECookieLaw.path + 'jquery.blockUI.js', run);
 			}else{
 				run();
 			}
