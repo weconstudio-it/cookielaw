@@ -5,7 +5,7 @@ var WECookieLaw = {
 			config = config || {};
 			
 			WECookieLaw.blocking = config.blocking || false;
-			WECookieLaw.path = config.path || "";
+			WECookieLaw.path = config.path || "http://www.weconstudio.it/wecookielaw/";
 			WECookieLaw.cancelLink = config.cancelLink ||  'http://www.garanteprivacy.it/';
 			WECookieLaw.acceptButton = config.acceptButton || "Accetto";
 			WECookieLaw.cancelButton = config.cancelButton || "Esci dal sito"
