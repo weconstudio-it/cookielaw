@@ -1,0 +1,97 @@
+.wecookiepop-container {
+	background-color: rgba(25, 25, 25, 0.9);
+	color: #efefef;
+	padding: 5px 20px;
+	font-size: 12px;
+	line-height: 1.2em;
+	text-align: center;
+	display: none;
+	z-index: 9999999;
+}
+
+.wecookiepop-container-top,
+.wecookiepop-container-fixedtop {
+	position: absolute;
+	top: 0; left: 0; right: 0;
+}
+
+.wecookiepop-container-fixedtop {
+	position: fixed;
+}
+
+.wecookiepop-container-bottom {
+	position: fixed;
+	bottom: 0; left: 0; right: 0;
+}
+
+.wecookiepop-body a, .wecookiepop-body b {
+  color: white;
+}
+
+.wecookiepop-container-bottomleft {
+	position: fixed;
+	bottom: 10px;
+	left: 10px;
+	width: 300px;
+}
+
+.wecookiepop-container-bottomright {
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+	width: 300px;
+}
+
+.wecookiepop-closebutton {
+	font-size: 16px;
+	font-weight: 100;
+	line-height: 1;
+	color: #a2a2a2;
+	filter: alpha(opacity=20);
+	position: absolute;
+	font-family: helvetica, arial, verdana, sans-serif;
+	top: 0; right: 0;
+	padding: 5px 10px;
+}
+.wecookiepop-closebutton:hover,
+.wecookiepop-closebutton:active {
+	color: #fff;
+	text-decoration: none;
+}
+
+.wecookiepop-head {
+	font-size: 1.2em;
+	font-weight: bold;
+	padding: 7px;
+	color: #fff;
+}
+
+.wecookiepop-body {
+	color: #a2a2a2;
+}
+
+.wecookiepop-buttons {
+	padding: 7px 0 5px 0;
+}
+
+.wecookiepop-button_1 {
+	color: #f6a21d;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.wecookiepop-button_2 {
+	color: #f6a21d;
+	font-weight: normal;
+	font-size: 12px;
+}
+
+.wecookiepop-button {
+	margin: 0 10px;
+}
+
+.wecookiepop-button:hover,
+.wecookiepop-button:focus {
+	text-decoration: underline;
+	color: #f6a21d;
+}
