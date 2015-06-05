@@ -30,7 +30,8 @@ var WECookieLaw = {
 			
 			// carico in memoria blockUI se non lo è già
 			if(typeof jQuery.blockUI == 'undefined'){
-				jQuery.getScript(WECookieLaw.path + 'jquery.blockUI.js', run);
+				if(WECookieLaw.blocking)
+					jQuery.getScript(WECookieLaw.path + 'jquery.blockUI.js', run);
 			}else{
 				run();
 			}
