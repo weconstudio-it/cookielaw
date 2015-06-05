@@ -5,7 +5,7 @@ var WECookieLaw = {
 			config = config || {};
 			
 			WECookieLaw.blocking = config.blocking || false;
-			WECookieLaw.cssPath = config.cssPath || "";
+			WECookieLaw.path = config.cssPath || "https://github.com/weconstudio-it/cookielaw/blob/master/";
 			WECookieLaw.cancelLink = config.cancelLink ||  'http://www.garanteprivacy.it/';
 			WECookieLaw.acceptButton = config.acceptButton || "Accetto";
 			WECookieLaw.cancelButton = config.cancelButton || "Esci dal sito"
@@ -30,7 +30,7 @@ var WECookieLaw = {
 			
 			// carico in memoria blockUI se non lo è già
 			if(typeof jQuery.blockUI == 'undefined'){
-				jQuery.getScript('jquery.blockUI.js', run);
+				jQuery.getScript(WECookieLaw.path + 'jquery.blockUI.js', run);
 			}else{
 				run();
 			}
@@ -96,7 +96,7 @@ var WECookieLaw = {
     },
     
     softBlock: function(){
-    	jQuery('head').append("<link rel='stylesheet' href='" + WECookieLaw.cssPath + "wecookiepop.css'>");
+    	jQuery('head').append("<link rel='stylesheet' href='" + WECookieLaw.path + "wecookiepop.css'>");
     	jQuery('body').append("<div class='wecookiepop-container wecookiepop-container-fixedtop wecookiepop-color-default' style='display: block;'>" +
     			"<div class='wecookiepop-body'>" + WECookieLaw.blockMessage + "</div>" +
     					"<div class='wecookiepop-buttons'>" +
@@ -111,7 +111,7 @@ var WECookieLaw = {
     cancelLink: '',
     blockMessage : "",
     buttons: "",
-    cssPath: "",
+    path: "",
     acceptButton: "",
     cancelButton: "",
     blocking: false
