@@ -26,13 +26,6 @@ var WECookieLaw = {
 				"</div>";
 				
 			
-			// se posso sbloccare sullo scroll, bindo l'evento
-			if(!WECookieLaw.disableAcceptOnScrolling){
-				jQuery(window).bind('scroll', function(){
-					WECookieLaw.setWECookie();
-				});
-			}
-			
 			// verifico che sia settato il cookie WECookieLaw
 			WECookieLaw.accepted(true);
 				
@@ -67,6 +60,15 @@ var WECookieLaw = {
 		consenso = (consenso?true:false);
 		
 		if(!consenso){
+			
+			// se posso sbloccare sullo scroll, bindo l'evento
+			if(!WECookieLaw.disableAcceptOnScrolling){
+				jQuery(window).bind('scroll', function(){
+					jQuery(window).unbind('scroll');
+					WECookieLaw.setWECookie();
+				});
+			}
+			
 			// se non ho il consenso dell'utente ad accettare i cookie, allora blocco la UI
 			if(askModal){
 				if(WECookieLaw.blocking){
