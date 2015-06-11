@@ -1,40 +1,50 @@
 var WECookieLaw = {
 		
-		init: function(config){
-			
-			config = config || {};
-			
-			WECookieLaw.blocking = config.blocking || false;
-			WECookieLaw.path = config.path || "http://www.weconstudio.it/wecookielaw/";
-			WECookieLaw.cancelLink = config.cancelLink ||  'http://www.garanteprivacy.it/';
-			WECookieLaw.acceptButton = config.acceptButton || "Accetto";
-			WECookieLaw.cancelButton = config.cancelButton || "Esci dal sito"
-			
-			console.log("WECookieLaw - init");
-			
-			function run(){
-				WECookieLaw.blockMessage = config.message || "<b>Informativa</b><br>" +
-				"Questo sito o gli strumenti terzi da questo utilizzati si avvalgono di <b>cookie</b> necessari al funzionamento ed utili alle finalità illustrate nella cookie policy. Se vuoi saperne di più o negare il consenso a tutti o ad alcuni cookie, consulta la <a target='_blank' href='" + (config.linkPolicy || WECookieLaw.linkPolicy) + "'>cookie policy</a>.<br>" +
-				"Accettando l'informativa o proseguendo la navigazione in altra maniera, acconsenti all'uso dei cookie.";
-				
-				WECookieLaw.buttons = config.buttons || "<div class='cookieBtnContainer'>" +
-					"<br>" +
-						"<button onclick='javascript:WECookieLaw.setWECookie();' class='accept'>" + WECookieLaw.acceptButton + "</button>" +
-						"<button onclick='javascript:WECookieLaw.cancel();' class='cancel'>" + WECookieLaw.cancelButton + "</button>" +
-					"</div>";
-					
-				// verifico che sia settato il cookie WECookieLaw
-				WECookieLaw.accepted(true);
-					
-			}
-			
-			// carico in memoria blockUI se non lo è già
-			if(typeof jQuery.blockUI == 'undefined' && WECookieLaw.blocking ){
-				jQuery.getScript(WECookieLaw.path + 'jquery.blockUI.js', run);
-			}else{
-				run();
-			}
+	init: function(config){
 		
+		config = config || {};
+		
+		WECookieLaw.blocking = config.blocking || false;
+		WECookieLaw.disableAcceptOnScrolling = config.disableAcceptOnScrolling || false;
+		
+		WECookieLaw.path = config.path || "http://www.weconstudio.it/wecookielaw/";
+		WECookieLaw.cancelLink = config.cancelLink ||  'http://www.garanteprivacy.it/';
+		WECookieLaw.acceptButton = config.acceptButton || "Accetto";
+		WECookieLaw.cancelButton = config.cancelButton || "Esci dal sito"
+		
+		console.log("WECookieLaw - init");
+		
+		function run(){
+			WECookieLaw.blockMessage = config.message || "<b>Informativa</b><br>" +
+			"Questo sito o gli strumenti terzi da questo utilizzati si avvalgono di <b>cookie</b> necessari al funzionamento ed utili alle finalità illustrate nella cookie policy. Se vuoi saperne di più o negare il consenso a tutti o ad alcuni cookie, consulta la <a target='_blank' href='" + (config.linkPolicy || WECookieLaw.linkPolicy) + "'>cookie policy</a>.<br>" +
+			"Accettando l'informativa, scorrendo questa pagina, cliccando su un link o proseguendo la navigazione in altra maniera, acconsenti all'uso dei cookie.";
+			
+			WECookieLaw.buttons = config.buttons || "<div class='cookieBtnContainer'>" +
+				"<br>" +
+					"<button onclick='javascript:WECookieLaw.setWECookie();' class='accept'>" + WECookieLaw.acceptButton + "</button>" +
+					"<button onclick='javascript:WECookieLaw.cancel();' class='cancel'>" + WECookieLaw.cancelButton + "</button>" +
+				"</div>";
+				
+			
+			// se posso sbloccare sullo scroll, bindo l'evento
+			if(!WECookieLaw.disableAcceptOnScrolling){
+				jQuery(window).bind('scroll', function(){
+					WECookieLaw.setWECookie();
+				});
+			}
+			
+			// verifico che sia settato il cookie WECookieLaw
+			WECookieLaw.accepted(true);
+				
+		}
+		
+		// carico in memoria blockUI se non lo è già
+		if(typeof jQuery.blockUI == 'undefined' && WECookieLaw.blocking ){
+			jQuery.getScript(WECookieLaw.path + 'jquery.blockUI.js', run);
+		}else{
+			run();
+		}
+	
 	},
 	
 	setWECookie: function(){
@@ -114,7 +124,8 @@ var WECookieLaw = {
     path: "",
     acceptButton: "",
     cancelButton: "",
-    blocking: false
+    blocking: false,
+    disableAcceptOnScrolling: false
 }
 
 if(typeof window.jQuery == 'undefined'){
