@@ -17,7 +17,7 @@ var WECookieLaw = {
 		function run(){
 			WECookieLaw.blockMessage = config.message || "<b>Informativa</b><br>" +
 			"Questo sito o gli strumenti terzi da questo utilizzati si avvalgono di <b>cookie</b> necessari al funzionamento ed utili alle finalità illustrate nella cookie policy. Se vuoi saperne di più o negare il consenso a tutti o ad alcuni cookie, consulta la <a target='_blank' href='" + (config.linkPolicy || WECookieLaw.linkPolicy) + "'>cookie policy</a>.<br>" +
-			"Accettando l'informativa, scorrendo questa pagina, cliccando su un link o proseguendo la navigazione in altra maniera, acconsenti all'uso dei cookie.";
+			"Accettando l'informativa, scorrendo questa pagina o proseguendo la navigazione in altra maniera, acconsenti all'uso dei cookie.";
 			
 			WECookieLaw.buttons = config.buttons || "<div class='cookieBtnContainer'>" +
 				"<br>" +
