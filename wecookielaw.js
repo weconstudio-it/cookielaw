@@ -11,13 +11,23 @@ var WECookieLaw = {
 		WECookieLaw.cancelLink = config.cancelLink ||  'http://www.garanteprivacy.it/';
 		WECookieLaw.acceptButton = config.acceptButton || "Accetto";
 		WECookieLaw.cancelButton = config.cancelButton || "Esci dal sito"
+		WECookieLaw.language = config.language||'IT';
 		
 		console.log("WECookieLaw - init");
 		
 		function run(){
-			WECookieLaw.blockMessage = config.message || "<b>Informativa</b><br>" +
-			"Questo sito o gli strumenti terzi da questo utilizzati si avvalgono di <b>cookie</b> necessari al funzionamento ed utili alle finalità illustrate nella cookie policy. Se vuoi saperne di più o negare il consenso a tutti o ad alcuni cookie, consulta la <a target='_blank' href='" + (config.linkPolicy || WECookieLaw.linkPolicy) + "'>cookie policy</a>.<br>" +
-			"Accettando l'informativa, scorrendo questa pagina o proseguendo la navigazione in altra maniera, acconsenti all'uso dei cookie.";
+			if(WECookieLaw.language=='IT') {
+				WECookieLaw.blockMessage = config.message || "<b>Informativa</b><br>" +
+					"Questo sito o gli strumenti terzi da questo utilizzati si avvalgono di <b>cookie</b> necessari al funzionamento ed utili alle finalità illustrate nella cookie policy. Se vuoi saperne di più o negare il consenso a tutti o ad alcuni cookie, consulta la <a target='_blank' href='" + (config.linkPolicy || WECookieLaw.linkPolicy) + "'>cookie policy</a>.<br>" +
+					"Accettando l'informativa, scorrendo questa pagina o proseguendo la navigazione in altra maniera, acconsenti all'uso dei cookie.";
+			}
+			if(WECookieLaw.language=='EN') {
+				WECookieLaw.blockMessage = config.message || "<b>Information</b><br>" +
+					"This website or third-party tools used by this we use cookies necessary for the operation and useful to the purposes outlined in the cookie policy. To learn more or opt out of all or some cookies, see the <a target='_blank' href='" + (config.linkPolicy || WECookieLaw.linkPolicy) + "'>cookie policy</a>.<br>" +
+					"By accepting the information, scroll this page or continuing navigation in any other way, you consent to the use of cookies.";
+				WECookieLaw.acceptButton = 'Accept';
+				WECookieLaw.cancelButton = 'Exit';
+			}
 			
 			WECookieLaw.buttons = config.buttons || "<div class='cookieBtnContainer'>" +
 				"<br>" +
@@ -128,7 +138,7 @@ var WECookieLaw = {
     cancelButton: "",
     blocking: false,
     disableAcceptOnScrolling: false
-}
+};
 
 if(typeof window.jQuery == 'undefined'){
 	console.log("WECookieLaw - onReady - jQuery non trovato");
